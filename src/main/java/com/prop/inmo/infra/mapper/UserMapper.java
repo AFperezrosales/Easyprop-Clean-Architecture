@@ -1,30 +1,36 @@
 package com.prop.inmo.infra.mapper;
 
+import com.prop.inmo.core.domain.UserModel;
 import com.prop.inmo.infra.dtos.request.UserRequestDTO;
 import com.prop.inmo.infra.dtos.response.UserResponseDTO;
-import com.prop.inmo.infra.persistence.UserEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
 
-    public static UserEntity dtoToUserEntity(UserRequestDTO dto){
+    public UserModel dtoToUserModel(UserRequestDTO dto){
 
-        return UserEntity.builder()
-                .email(dto.email())
-                .password(dto.password())
-                .birthdate(dto.birthdate())
-                .name(dto.name())
-                .lastName(dto.lastName())
-                .phoneNumber(dto.phoneNumber())
-                .build();
+        return new  UserModel(
+                null,
+                dto.email(),
+                dto.password(),
+                dto.birthdate(),
+                dto.name(),
+                dto.lastName(),
+                dto.phoneNumber(),
+                null
+
+
+        );
     }
 
-    public static UserResponseDTO userToUserResponseDTO(UserEntity userEntity){
+    public UserResponseDTO userToUserResponseDTO(UserModel userModel){
 
-        return new UserResponseDTO(userEntity.getEmail(),
-                                   userEntity.getBirthdate(),
-                                   userEntity.getName(),
-                                   userEntity.getLastName(),
-                                   userEntity.getPhoneNumber());
+        return new UserResponseDTO(userModel.email(),
+                                   userModel.birthdate(),
+                                   userModel.name(),
+                                   userModel.lastName(),
+                                   userModel.phoneNumber());
 
     }
 
