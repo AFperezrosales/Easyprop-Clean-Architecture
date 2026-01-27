@@ -6,7 +6,7 @@ import com.prop.inmo.infra.dtos.response.UserResponseDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserModelMapper {
 
     public UserModel dtoToUserModel(UserRequestDTO dto){
 

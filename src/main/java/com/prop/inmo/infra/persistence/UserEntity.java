@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.Date;
 
@@ -25,9 +27,14 @@ public class UserEntity {
     private Date birthdate;
     //entidad a la que se conecta en este caso seria la propiedad.
     private String name;
+    @Column(name = "lastname")
     private String lastName;
+    @Column(name = "phonenumber")
     private String phoneNumber;
     //entidad direccion enbbebida para poder agrupar esos datos que se van a usar juntos.
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", columnDefinition = "role_users")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private UserRole role;
 }

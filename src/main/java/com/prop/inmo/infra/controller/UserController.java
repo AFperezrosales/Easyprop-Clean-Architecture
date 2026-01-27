@@ -4,7 +4,7 @@ import com.prop.inmo.core.domain.UserModel;
 import com.prop.inmo.core.usecases.CreateUserUsecase;
 import com.prop.inmo.infra.dtos.request.UserRequestDTO;
 import com.prop.inmo.infra.dtos.response.UserResponseDTO;
-import com.prop.inmo.infra.mapper.UserMapper;
+import com.prop.inmo.infra.mapper.UserModelMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final CreateUserUsecase createUserUsecase;
-    private final UserMapper userMapper;
+    private final UserModelMapper userModelMapper;
 
     @PostMapping
     public UserResponseDTO createUser(@RequestBody UserRequestDTO userRequestDTO){
-        UserModel newUser = createUserUsecase.execute(userMapper.dtoToUserModel(userRequestDTO));
-        return userMapper.userToUserResponseDTO(newUser);
+        UserModel newUser = createUserUsecase.execute(userModelMapper.dtoToUserModel(userRequestDTO));
+        return userModelMapper.userToUserResponseDTO(newUser);
 
     }
 
