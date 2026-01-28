@@ -4,6 +4,7 @@ import com.prop.inmo.core.domain.UserModel;
 import com.prop.inmo.core.enums.UserRole;
 import com.prop.inmo.core.gateway.UserGateway;
 import com.prop.inmo.infra.exceptions.UserAlreadyExistException;
+import com.prop.inmo.infra.exceptions.UserNotFoundException;
 import com.prop.inmo.infra.mapper.UserEntityMapper;
 import com.prop.inmo.infra.persistence.UserEntity;
 import com.prop.inmo.infra.persistence.UserRepository;
@@ -36,5 +37,12 @@ public class UserRepositoryGateway implements UserGateway {
     public boolean emailAlreadyExist(String email) {
        return userRepository.findAll().stream()
                 .anyMatch(userEntity -> userEntity.getEmail().equals(email));
+    }
+
+    @Override
+    public UserModel findUserById(String id) {
+        UserEntity userEntity = userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("User not found"));
+        UserModel model = userEntityMapper.entityToUserModel(userEntity);
+       return model;
     }
 }

@@ -11,4 +11,6 @@ public interface UserGateway {
     List<UserModel> findAllUsers();
 
     boolean emailAlreadyExist(String email);
+
+    UserModel findUserById(String id);
 }

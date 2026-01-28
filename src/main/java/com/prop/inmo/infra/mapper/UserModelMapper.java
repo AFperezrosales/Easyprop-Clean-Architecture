@@ -26,7 +26,8 @@ public class UserModelMapper {
 
     public UserResponseDTO userToUserResponseDTO(UserModel userModel){
 
-        return new UserResponseDTO(userModel.email(),
+        return new UserResponseDTO(userModel.id(),
+                                   userModel.email(),
                                    userModel.birthdate(),
                                    userModel.name(),
                                    userModel.lastName(),
