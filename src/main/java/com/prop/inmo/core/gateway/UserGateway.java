@@ -9,4 +9,6 @@ public interface UserGateway {
     UserModel createUser(UserModel userModel);
 
     List<UserModel> findAllUsers();
+
+    boolean emailAlreadyExist(String email);
 }

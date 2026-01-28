@@ -7,9 +7,12 @@ import com.prop.inmo.infra.dtos.request.UserRequestDTO;
 import com.prop.inmo.infra.dtos.response.UserResponseDTO;
 import com.prop.inmo.infra.mapper.UserModelMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -23,9 +26,12 @@ public class UserController {
     private final FindAllUsersUsecase findAllUsersUsecase;
 
     @PostMapping
-    public UserResponseDTO createUser(@RequestBody UserRequestDTO userRequestDTO){
+    public ResponseEntity<Map<String,Object>> createUser(@RequestBody UserRequestDTO userRequestDTO){
         UserModel newUser = createUserUsecase.execute(userModelMapper.dtoToUserModel(userRequestDTO));
-        return userModelMapper.userToUserResponseDTO(newUser);
+        Map<String,Object> response = new HashMap<>();
+        response.put("Message;", "User registered successfully");
+        response.put("Data",userModelMapper.userToUserResponseDTO(newUser));
+        return ResponseEntity.ok(response);
 
     }
 
