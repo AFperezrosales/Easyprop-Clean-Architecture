@@ -9,6 +9,9 @@ import com.prop.inmo.infra.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Component
 public class UserRepositoryGateway implements UserGateway {
@@ -21,5 +24,10 @@ public class UserRepositoryGateway implements UserGateway {
         entity.setRole(UserRole.USER);
         UserEntity newUser = userRepository.save(entity);
         return userEntityMapper.entityToUserModel(newUser);
+    }
+
+    @Override
+    public List<UserModel> findAllUsers() {
+        return userRepository.findAll().stream().map(userEntityMapper::entityToUserModel).collect(Collectors.toList());
     }
 }
