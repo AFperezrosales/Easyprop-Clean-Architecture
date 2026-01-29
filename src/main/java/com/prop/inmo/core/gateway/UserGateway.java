@@ -13,4 +13,6 @@ public interface UserGateway {
     boolean emailAlreadyExist(String email);
 
     UserModel findUserById(String id);
+
+    String login(String email,String password);
 }
