@@ -1,6 +1,6 @@
 package com.prop.inmo.core.usecases;
 
-public interface LoginUsercase {
+public interface LoginUsecase {
 
     String execute(String email, String password);
 }

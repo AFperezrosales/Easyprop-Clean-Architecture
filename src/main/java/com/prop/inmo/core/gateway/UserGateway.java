@@ -14,5 +14,5 @@ public interface UserGateway {
 
     UserModel findUserById(String id);
 
-    String login(String email,String password);
+
 }

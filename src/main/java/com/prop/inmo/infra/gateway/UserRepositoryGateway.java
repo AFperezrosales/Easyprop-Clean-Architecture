@@ -51,8 +51,4 @@ public class UserRepositoryGateway implements UserGateway {
        return model;
     }
 
-    @Override
-    public String login(String email, String password) {
-
-    }
 }

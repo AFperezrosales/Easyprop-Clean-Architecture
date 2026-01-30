@@ -4,6 +4,8 @@ package com.prop.inmo.infra.exceptions;
 import com.prop.inmo.infra.dtos.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -29,5 +31,12 @@ public class ControllerExceptionHandler {
         response.put("ERROR: ", ex.getMessage() );
         response.put("Message: ", "User not found");
         return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({BadCredentialsException.class, UsernameNotFoundException.class})
+    public ResponseEntity<Map<String, String>> handleAuthErrors(Exception ex) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED) // 401
+                .body(Map.of("error", "Credenciales inválidas")); // Mensaje genérico seguro
     }
 }
