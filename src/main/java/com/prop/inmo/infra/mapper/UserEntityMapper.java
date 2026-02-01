@@ -18,7 +18,9 @@ public class UserEntityMapper {
                 userModel.name(),
                 userModel.lastName(),
                 userModel.phoneNumber(),
-                userModel.role()
+                userModel.role(),
+                null
+
         );
     }
 
@@ -32,7 +34,8 @@ public class UserEntityMapper {
                     userEntity.getName(),
                     userEntity.getLastName(),
                     userEntity.getPhoneNumber(),
-                    userEntity.getRole()
+                    userEntity.getRole(),
+                    null
             );
 
     }

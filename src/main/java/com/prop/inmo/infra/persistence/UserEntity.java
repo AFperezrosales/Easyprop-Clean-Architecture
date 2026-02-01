@@ -10,6 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Entity
@@ -37,4 +38,7 @@ public class UserEntity {
     @Column(name = "role", columnDefinition = "role_users")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private UserRole role;
+
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.REMOVE)
+    private List<PropertyEntity> propertyEntities;
 }

@@ -18,6 +18,7 @@ public class UserModelMapper {
                 dto.name(),
                 dto.lastName(),
                 dto.phoneNumber(),
+                null,
                 null
 
 
